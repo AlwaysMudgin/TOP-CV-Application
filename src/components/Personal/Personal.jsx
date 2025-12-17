@@ -29,7 +29,7 @@ const Wrapper = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 2rem 25%;
+  padding: 2rem 15%;
   background-color: #26408b;
   color: white;
 `;

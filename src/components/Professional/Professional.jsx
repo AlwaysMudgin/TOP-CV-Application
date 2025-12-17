@@ -11,7 +11,7 @@ function Professional({ data }) {
       </Heading>
       <Items>
         {data.map((item) => (
-          <ItemWrapper>
+          <ItemWrapper key={item.organization}>
             <LineWrapper>
               <Organization>{item.organization}</Organization>
               <Detail>
@@ -20,6 +20,11 @@ function Professional({ data }) {
             </LineWrapper>
             <Title>{item.title}</Title>
             <Detail>{item.location}</Detail>
+            <List>
+              {item.details.map((detail, index) => (
+                <ListItem key={index}>{detail}</ListItem>
+              ))}
+            </List>
           </ItemWrapper>
         ))}
       </Items>
@@ -35,7 +40,9 @@ const Heading = styled.h2`
   gap: 0.5rem;
   padding-left: 2rem;
   background: linear-gradient(to right, #f7dba7, white);
-  width: 50%;
+  width: 75%;
+  margin: 0.5rem 0;
+  color: darkslategray;
 `;
 
 const Items = styled.div`
@@ -69,6 +76,14 @@ const Title = styled.p`
   margin: 0;
   font-style: italic;
   text-align: left;
+`;
+
+const List = styled.ul``;
+
+const ListItem = styled.li`
+  padding-left: 1rem;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
 `;
 
 export default Professional;

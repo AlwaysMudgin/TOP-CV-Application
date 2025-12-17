@@ -10,7 +10,7 @@ function Education({ data }) {
         <Book />
       </Heading>
       {data.map((item) => (
-        <ItemWrapper>
+        <ItemWrapper key={item.school}>
           <LineWrapper>
             <School>{item.school}</School>
             <Detail>
@@ -33,7 +33,9 @@ const Heading = styled.h2`
   gap: 0.5rem;
   padding-left: 2rem;
   background: linear-gradient(to right, #f7dba7, white);
-  width: 50%;
+  width: 75%;
+  margin-bottom: 0.5rem;
+  color: darkslategray;
 `;
 
 const ItemWrapper = styled.div`
