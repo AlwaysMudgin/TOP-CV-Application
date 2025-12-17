@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import styled from 'styled-components';
+import './App.css';
+import SideMenu from './components/SideMenu/SideMenu';
+import Personal from './components/Personal/Personal';
+import Education from './components/Education/Education';
+import Professional from './components/Professional/Professional';
+
+import { EXAMPLE } from './constants';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [menuOpen, setMenuOpen] = useState(true);
+  const [content, setContent] = useState(EXAMPLE);
+
+  function toggleMenuOpen() {
+    setMenuOpen(!menuOpen);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <PageWrapper>
+      <SideMenu open={menuOpen} toggle={toggleMenuOpen} />
+      <MainWrapper>
+        <Personal data={content.personal} />
+        <Body>
+          <Education data={content.education} />
+          <Professional data={content.professional} />
+        </Body>
+      </MainWrapper>
+    </PageWrapper>
+  );
 }
 
-export default App
+const PageWrapper = styled.div``;
+
+const MainWrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+`;
+
+const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export default App;
